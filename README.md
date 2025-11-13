@@ -184,17 +184,6 @@ Key Insights:
 - Cloud skills (Azure, AWS) and big data tools (Spark, Databricks) show strong demand, reflecting modern data stacks.
 - BI & visualization tools (Power BI, Tableau, Excel) remain essential for delivering insights to stakeholders.
 
-pie title Top 10 In-Demand Skills (Netherlands)
-  "Python" : 10018
-  "SQL" : 9178
-  "Azure" : 5926
-  "R" : 2989
-  "AWS" : 2688
-  "Spark" : 2495
-  "Databricks" : 2297
-  "Power BI" : 2279
-  "Tableau" : 1924
-  "Excel" : 1852
 
 ### 4. Highest-Paying Skills for Data Analysts in the Netherlands
 
@@ -345,16 +334,6 @@ Key Insights:
 - Spark, Azure, and AWS stand out as skills with both high demand and strong pay, making them excellent long-term bets.
 - Tools like Git/GitHub, Airflow, Pandas and languages like Scala, C# also score well, confirming that data analysts benefit from strong software engineering fundamentals.
 - Tableau appears as a visualization tool with both solid demand and a six-figure average salary, reinforcing the value of strong communication and dashboarding skills.
-
-pie title Top "Optimal" Skills by Avg Salary (Sample)
-  "NoSQL" : 167081
-  "Kafka" : 166420
-  "Terraform" : 166420
-  "Flow" : 151239
-  "GitHub" : 150896
-  "GCP" : 146239
-  "Hadoop" : 144243
-  "Redshift" : 142910
 
 # What I learned?
 

@@ -1,15 +1,29 @@
 /* What are the most in-demand skills for data analysts in the Netherlands?
+- Count how often each skill appears in job postings located in the Netherlands.
+- Use joins between job postings and skills tables to capture the full tech stack demand.
+- Why? Identify the core tools and technologies that are most frequently requested so learners know what to focus on first.
 */
 
 SELECT 
     skills,
     COUNT(skills_job_dim.job_id) AS demand_count
 FROM job_postings_fact
-INNER JOIN skills_job_dim ON job_postings_fact.job_id = skills_job_dim.job_id
-INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
-WHERE job_location LIKE '%Netherlands%'
+INNER JOIN skills_job_dim 
+    ON job_postings_fact.job_id = skills_job_dim.job_id
+INNER JOIN skills_dim 
+    ON skills_job_dim.skill_id = skills_dim.skill_id
+WHERE 
+    job_location LIKE '%Netherlands%'
 GROUP BY
     skills
 ORDER BY
     demand_count DESC
-LIMIT 10
+LIMIT 10;
+
+/*
+Results summary:
+- Python (10,018) and SQL (9,178) are by far the most in-demand skills, forming the core toolkit for data roles in the Netherlands.
+- Cloud platforms and big-data tools like Azure (5,926), AWS (2,688), Spark (2,495), and Databricks (2,297) show strong demand for scalable data processing.
+- BI and reporting tools such as Power BI (2,279), Tableau (1,924), and Excel (1,852) remain essential for turning data into insights and dashboards.
+- Overall, the market favors a combination of programming (Python/R), databases (SQL), cloud, and visualization skills.
+*/

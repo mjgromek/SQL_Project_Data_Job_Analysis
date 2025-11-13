@@ -1,7 +1,7 @@
 /* What are the top-paying data analyst jobs in Germany, Netherlands and Belgium?
 - Identify the top 10 highest-paying Data Analyst roles that are available remotely.
 - Focuses on job postings with specified salaries
-- Why?  Highlight the top-paying opportunities for Data Analysts
+- Why?  Highlight the top-paying opportunities for Data Analysts and use them as a benchmark for salary expectations.
 */
 
 SELECT
@@ -19,8 +19,16 @@ WHERE
     job_title_short LIKE '%Data%' AND
     job_title_short LIKE '%Analyst%' AND
     (job_location LIKE '%Netherlands%' OR
-    job_location LIKE '%Belgium%') AND
+     job_location LIKE '%Belgium%') AND
     salary_year_avg IS NOT NULL
 ORDER BY
     salary_year_avg DESC
-LIMIT 10
+LIMIT 10;
+
+/* 
+Results summary:
+- The highest listed role pays 177,283 per year for a Staff Research Engineer at ServiceNow in Amsterdam.
+- Most of the top roles are senior "Data Architect" positions in Belgium, with salaries clustered around 165,000 per year.
+- Only a couple of the top 10 jobs have a pure "Data Analyst" title, showing that architect/engineering-style roles dominate the top of the pay range.
+- Both Belgium and the Netherlands host high-paying opportunities, with Belgium featuring several consulting/IT firms and Amsterdam attracting big tech names like Netflix and Adyen.
+*/

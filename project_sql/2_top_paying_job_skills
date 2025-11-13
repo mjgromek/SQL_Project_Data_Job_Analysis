@@ -1,35 +1,46 @@
 /* What skills are required for the top-paying data analyst jobs in the Netherlands and Belgium?
+- Identify the tech stack behind the 10 highest-paying Data Analyst roles in NL & BE.
+- Use a CTE to first select the top-paying jobs, then join to the skills tables.
+- Why? Reveal which tools, languages, and platforms are most commonly requested in elite roles so learners know what to prioritize.
 */
 
-
 WITH top_paying_jobs AS (
-SELECT
-    job_id,
-    job_title,
-    salary_year_avg,
-    job_posted_date,
-    name AS company_name
-FROM 
-    job_postings_fact
-LEFT JOIN company_dim ON job_postings_fact.company_id = company_dim.company_id
-WHERE
-    job_title_short LIKE '%Data%' AND
-    job_title_short LIKE '%Analyst%' AND
-    (job_location LIKE '%Netherlands%' OR
-    job_location LIKE '%Belgium%') AND
-    salary_year_avg IS NOT NULL
-ORDER BY
-    salary_year_avg DESC
-LIMIT 10
+    SELECT
+        job_id,
+        job_title,
+        salary_year_avg,
+        job_posted_date,
+        name AS company_name
+    FROM 
+        job_postings_fact
+    LEFT JOIN company_dim 
+        ON job_postings_fact.company_id = company_dim.company_id
+    WHERE
+        job_title_short LIKE '%Data%' AND
+        job_title_short LIKE '%Analyst%' AND
+        (job_location LIKE '%Netherlands%' OR
+         job_location LIKE '%Belgium%') AND
+        salary_year_avg IS NOT NULL
+    ORDER BY
+        salary_year_avg DESC
+    LIMIT 10
 )
 
 SELECT 
     skills,
     top_paying_jobs.*
 FROM top_paying_jobs
-INNER JOIN skills_job_dim ON top_paying_jobs.job_id = skills_job_dim.job_id
-INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
+INNER JOIN skills_job_dim 
+    ON top_paying_jobs.job_id = skills_job_dim.job_id
+INNER JOIN skills_dim 
+    ON skills_job_dim.skill_id = skills_dim.skill_id
 ORDER BY 
-    salary_year_avg
-LIMIT 10
+    salary_year_avg DESC
+LIMIT 10;
 
+/*
+Results summary:
+- A top example is an "Azure Data Analyst" role at Devoteam (~111,175/year) that lists Databricks, SSIS, Azure, AWS, SQL Server, SQL, Python, and Power BI.
+- Core analytics tools like SQL, Python, Power BI, and Excel appear alongside modern cloud platforms (Azure, AWS) and data engineering tech (Databricks, SSIS).
+- This suggests that high-paying analyst roles in NL & BE expect a mix of BI/reporting skills plus strong cloud & data-engineering capabilities.
+*/

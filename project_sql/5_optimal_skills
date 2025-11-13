@@ -1,40 +1,49 @@
 /* What are the most optimal skills to learn? 
+- Combine both demand (how often a skill appears in job postings) and pay (average salary)
+  across the Netherlands, Germany, and Belgium.
+- Step 1: Calculate demand for each skill in all roles with salary data.
+- Step 2: Calculate the average salary for Data Analyst roles that require each skill.
+- Step 3: Join both views, filter to skills with at least 10 postings, and sort
+  by highest salary and then by demand.
+- Why? Identify high-impact skills that are both well-paid and reasonably in demand,
+  giving a focused learning roadmap for aspiring data analysts.
 */
 
-
 WITH skills_demand AS (
-SELECT 
-    skills_dim.skill_id,
-    skills_dim.skills,
-    COUNT(skills_job_dim.job_id) AS demand_count
-FROM job_postings_fact
-INNER JOIN 
-    skills_job_dim ON job_postings_fact.job_id = skills_job_dim.job_id
-INNER JOIN 
-    skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
-WHERE 
-    (job_location LIKE '%Netherlands%' OR
-    job_location LIKE '%Germany%' OR
-    job_location LIKE '%Belgium%') AND
-    salary_year_avg IS NOT NULL 
-GROUP BY
-    skills_dim.skill_id
+    SELECT 
+        skills_dim.skill_id,
+        skills_dim.skills,
+        COUNT(skills_job_dim.job_id) AS demand_count
+    FROM job_postings_fact
+    INNER JOIN skills_job_dim 
+        ON job_postings_fact.job_id = skills_job_dim.job_id
+    INNER JOIN skills_dim 
+        ON skills_job_dim.skill_id = skills_dim.skill_id
+    WHERE 
+        (job_location LIKE '%Netherlands%' OR
+         job_location LIKE '%Germany%' OR
+         job_location LIKE '%Belgium%') AND
+        salary_year_avg IS NOT NULL 
+    GROUP BY
+        skills_dim.skill_id, skills_dim.skills
 ), average_salary AS (
-SELECT 
-    skills_job_dim.skill_id,
-    ROUND(AVG(salary_year_avg), 0) as avg_salary
-FROM job_postings_fact
-INNER JOIN skills_job_dim ON job_postings_fact.job_id = skills_job_dim.job_id
-INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
-WHERE 
-    job_title_short LIKE '%Data%' AND 
-    job_title_short LIKE '%Analyst%' AND 
-    (job_location LIKE '%Netherlands%' OR
-    job_location LIKE '%Germany%' OR
-    job_location LIKE '%Belgium%') AND
-    salary_year_avg IS NOT NULL 
-GROUP BY
-    skills_job_dim.skill_id
+    SELECT 
+        skills_job_dim.skill_id,
+        ROUND(AVG(salary_year_avg), 0) AS avg_salary
+    FROM job_postings_fact
+    INNER JOIN skills_job_dim 
+        ON job_postings_fact.job_id = skills_job_dim.job_id
+    INNER JOIN skills_dim 
+        ON skills_job_dim.skill_id = skills_dim.skill_id
+    WHERE 
+        job_title_short LIKE '%Data%' AND 
+        job_title_short LIKE '%Analyst%' AND 
+        (job_location LIKE '%Netherlands%' OR
+         job_location LIKE '%Germany%' OR
+         job_location LIKE '%Belgium%') AND
+        salary_year_avg IS NOT NULL 
+    GROUP BY
+        skills_job_dim.skill_id
 )
 
 SELECT 
@@ -51,4 +60,22 @@ WHERE
 ORDER BY
     avg_salary DESC,
     demand_count DESC
-LIMIT 25
+LIMIT 20;
+
+/*
+Results summary:
+- The top “optimal” skills are heavily cloud & data-engineering focused:
+  - NoSQL (~167k), Kafka (~166k), Terraform (~166k) lead the list with very high average salaries.
+- Modern data platforms and warehouses like GCP, Hadoop, Redshift, BigQuery, Snowflake, and Spark
+  combine strong pay (138k–146k range for many) with solid demand (Spark: 101 postings, AWS: 84, Azure: 75).
+- General-purpose engineering and dev tools also rank well:
+  - Git (35) and GitHub (11) appear with six-figure averages, showing version control is expected in senior roles.
+  - C# also appears as a well-compensated complementary language skill.
+- BI & analytics tools like Tableau (41 postings, ~103k) remain attractive “optimal” skills:
+  reasonably high demand plus six-figure average pay.
+- Overall, the best skills to prioritize are a mix of:
+  - Cloud platforms (AWS, Azure, GCP),
+  - Big data tooling (Spark, Kafka, Hadoop, Snowflake, BigQuery, Redshift),
+  - Supporting engineering tools (Git/GitHub, Terraform, Airflow, Pandas),
+  which together position you for high-paying data analyst/analytics engineer-style roles.
+*/

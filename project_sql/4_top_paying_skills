@@ -1,12 +1,18 @@
-/* What are the most in-demand skills for data analysts in the Netherlands?
+/* What are the highest-paying skills for data analysts in the Netherlands?
+- Filter for Data Analyst roles in the Netherlands with specified yearly salaries.
+- Join job postings with skills to calculate the average salary associated with each skill.
+- Why? Reveal which tools and technologies are linked to the highest-paying data analyst jobs, 
+  helping decide which advanced skills are most financially rewarding to focus on.
 */
 
 SELECT 
     skills,
-    ROUND(AVG(salary_year_avg), 0) as avg_salary
+    ROUND(AVG(salary_year_avg), 0) AS avg_salary
 FROM job_postings_fact
-INNER JOIN skills_job_dim ON job_postings_fact.job_id = skills_job_dim.job_id
-INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
+INNER JOIN skills_job_dim 
+    ON job_postings_fact.job_id = skills_job_dim.job_id
+INNER JOIN skills_dim 
+    ON skills_job_dim.skill_id = skills_dim.skill_id
 WHERE 
     job_title_short LIKE '%Data%' AND 
     job_title_short LIKE '%Analyst%' AND 
@@ -17,3 +23,19 @@ GROUP BY
 ORDER BY
     avg_salary DESC
 LIMIT 25;
+
+/*
+Results summary:
+- The top-paying skills (NoSQL, AWS, Azure) all have an average salary of ~177,283, 
+  indicating that cloud and non-relational database expertise can be associated 
+  with very senior, highly-paid analyst roles.
+- Big data & data-engineering-related tools such as Hadoop (144,243), Spark (118,486), 
+  Airflow (111,202), and PySpark (111,189) also show up with strong average salaries.
+- Enterprise and BI tools like SAP (123,725), Tableau (106,959), Looker (103,826), Qlik (98,500),
+  and Cognos/SAS (89,204) are well-compensated in analytics contexts.
+- Core analytical languages and tools such as R (99,956) and SQL (96,006) still earn solid salaries,
+  but their averages are slightly lower, likely because they are required across a broader range
+  of both mid-level and senior roles.
+- Some “office” tools (Word, PowerPoint, Outlook, MS Access, VBA) appear with high averages 
+  because they are attached to a few very well-paid positions that also require advanced tech skills.
+*/

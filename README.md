@@ -209,7 +209,7 @@ WHERE
 ORDER BY
     a.avg_salary DESC,
     sd.demand_count DESC
-LIMIT 25;
+LIMIT 20;
 ```
 
 # What I learned?

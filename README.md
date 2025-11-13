@@ -71,6 +71,24 @@ ORDER BY
 LIMIT 10
 ```
 
+|  Job ID | Job Title                       | Location                 | Schedule  | Salary (€/year) | Posted Date         | Company        |
+| ------: | ------------------------------- | ------------------------ | --------- | --------------: | ------------------- | -------------- |
+|   24675 | Staff Research Engineer         | Amsterdam, Netherlands   | Full-time |         177,283 | 2023-06-21 22:25:43 | ServiceNow     |
+|  155094 | Data Architect                  | Machelen, Belgium        | Full-time |         165,000 | 2023-07-26 17:12:05 | Devoteam       |
+|   88304 | Data Architect                  | Zaventem, Belgium        | Full-time |         165,000 | 2023-07-12 07:50:13 | Devoteam       |
+|  280829 | Data Architect                  | Machelen, Belgium        | Full-time |         165,000 | 2023-08-03 15:29:20 | Devoteam       |
+|   53650 | Data Architect                  | Brussels, Belgium        | Full-time |         165,000 | 2023-01-18 06:27:33 | Blue Harvest   |
+|  539907 | Data Architect                  | Anderlecht, Belgium      | Full-time |         163,782 | 2023-06-22 17:55:14 | Ypto           |
+| 1719883 | Data Architect - Sustainability | Netherlands              | Full-time |         155,000 | 2023-12-21 13:38:35 | LyondellBasell |
+| 1051496 | Analytics Engineer (L5) - EMEA  | Amsterdam, Netherlands   | Full-time |         147,500 | 2023-07-13 18:16:22 | Netflix        |
+|  348471 | Data Analyst, Reporting         | Amsterdam, Netherlands   | Full-time |         111,202 | 2023-01-02 08:29:05 | Adyen          |
+|  250812 | C002927 Data Analyst (NS)       | Braine-l'Alleud, Belgium | Full-time |         111,175 | 2023-07-10 16:54:56 | EMW, Inc.      |
+
+Key Insights:
+
+- The highest salaries (up to ~€177k) are associated with very senior roles like Staff Research Engineer and Data Architect, rather than classic “junior” Data Analyst titles.
+- Belgium has several high-paying architect roles (Devoteam, Blue Harvest, Ypto), while the Netherlands features big tech names like ServiceNow, Netflix, Adyen, and LyondellBasell.
+- For analysts, this suggests a natural progression: moving towards data architecture / analytics engineering can significantly increase earning potential.
 
 ### 2. Skills for Top-Paying Data Analyst Jobs
 
@@ -109,6 +127,26 @@ ORDER BY
 LIMIT 10
 ```
 
+| Skill      | Job Title               | Company  | Salary (€/year) |
+| ---------- | ----------------------- | -------- | --------------: |
+| databricks | Azure Data Analyst      | Devoteam |         111,175 |
+| ssis       | Azure Data Analyst      | Devoteam |         111,175 |
+| go         | Azure Data Analyst      | Devoteam |         111,175 |
+| azure      | Azure Data Analyst      | Devoteam |         111,175 |
+| aws        | Azure Data Analyst      | Devoteam |         111,175 |
+| power bi   | Azure Data Analyst      | Devoteam |         111,175 |
+| sql        | Azure Data Analyst      | Devoteam |         111,175 |
+| python     | Azure Data Analyst      | Devoteam |         111,175 |
+| sql server | Azure Data Analyst      | Devoteam |         111,175 |
+| excel      | Data Analyst, Reporting | Adyen    |         111,202 |
+
+
+Key Insights:
+
+- High-paying roles blend cloud platforms (Azure, AWS) with data engineering tools (Databricks, SSIS) and core analytics skills (SQL, Python).
+- Power BI and Excel still appear in premium roles, showing that storytelling and reporting skills remain important even as tech stacks become more advanced.
+- Top-paying “analyst” roles look a lot like analytics engineer positions: strong mix of BI, programming, databases, and cloud.
+
 ### 3. Most In-Demand Skills for Data Analysts in the Netherlands
 
 To see which skills are requested most often, I counted how many times each skill appears in job postings based in the Netherlands. By grouping by skill and ordering by the count, this query highlights the technologies and tools that are most commonly required for data roles in this region.
@@ -127,6 +165,36 @@ ORDER BY
     demand_count DESC
 LIMIT 10
 ```
+| Skill      | Demand Count |
+| ---------- | -----------: |
+| python     |       10,018 |
+| sql        |        9,178 |
+| azure      |        5,926 |
+| r          |        2,989 |
+| aws        |        2,688 |
+| spark      |        2,495 |
+| databricks |        2,297 |
+| power bi   |        2,279 |
+| tableau    |        1,924 |
+| excel      |        1,852 |
+
+Key Insights:
+
+- Python and SQL are the clear core skills for data roles in the Netherlands.
+- Cloud skills (Azure, AWS) and big data tools (Spark, Databricks) show strong demand, reflecting modern data stacks.
+- BI & visualization tools (Power BI, Tableau, Excel) remain essential for delivering insights to stakeholders.
+
+pie title Top 10 In-Demand Skills (Netherlands)
+  "Python" : 10018
+  "SQL" : 9178
+  "Azure" : 5926
+  "R" : 2989
+  "AWS" : 2688
+  "Spark" : 2495
+  "Databricks" : 2297
+  "Power BI" : 2279
+  "Tableau" : 1924
+  "Excel" : 1852
 
 ### 4. Highest-Paying Skills for Data Analysts in the Netherlands
 
@@ -152,6 +220,41 @@ ORDER BY
     avg_salary DESC
 LIMIT 25;
 ```
+
+| Skill      | Avg Salary (€/year) |
+| ---------- | ------------------: |
+| nosql      |             177,283 |
+| aws        |             177,283 |
+| azure      |             177,283 |
+| hadoop     |             144,243 |
+| sap        |             123,725 |
+| spark      |             118,486 |
+| vba        |             111,202 |
+| airflow    |             111,202 |
+| pyspark    |             111,189 |
+| word       |             111,175 |
+| outlook    |             108,088 |
+| scala      |             107,250 |
+| tableau    |             106,959 |
+| powerpoint |             105,000 |
+| ms access  |             105,000 |
+| go         |             103,896 |
+| looker     |             103,826 |
+| r          |              99,956 |
+| c#         |              98,500 |
+| jira       |              98,500 |
+| qlik       |              98,500 |
+| sql        |              96,006 |
+| matlab     |              90,838 |
+| cognos     |              89,204 |
+| sas        |              89,204 |
+
+Key Insights:
+
+- Top-paying skills cluster around cloud and big data: NoSQL, AWS, Azure, Hadoop, Spark, Airflow, PySpark.
+- Enterprise tools (SAP, Tableau, Qlik, Looker, Cognos, SAS) are also associated with strong salaries.
+- Core analysis tools like SQL and R have slightly lower average salaries, likely because they appear in a broader mix of mid-level and senior roles.
+- Even “office” tools (Word, PowerPoint, Outlook, MS Access, VBA) show high averages because they attach to a few extremely well-paid senior roles that list them alongside advanced tech skills.
 
 ### 5. Optimal Skills to Learn
 
@@ -211,6 +314,47 @@ ORDER BY
     sd.demand_count DESC
 LIMIT 20;
 ```
+| Skill ID | Skill     | Demand Count | Avg Salary (€/year) |
+| -------: | --------- | -----------: | ------------------: |
+|        2 | nosql     |           24 |             167,081 |
+|       98 | kafka     |           29 |             166,420 |
+|      212 | terraform |           20 |             166,420 |
+|      215 | flow      |           11 |             151,239 |
+|      216 | github    |           11 |             150,896 |
+|       81 | gcp       |           27 |             146,239 |
+|       97 | hadoop    |           17 |             144,243 |
+|       78 | redshift  |           22 |             142,910 |
+|       77 | bigquery  |           17 |             140,499 |
+|       80 | snowflake |           26 |             138,088 |
+|       92 | spark     |          101 |             134,029 |
+|        3 | scala     |           19 |             126,500 |
+|       74 | azure     |           75 |             123,144 |
+|       76 | aws       |           84 |             121,441 |
+|       96 | airflow   |           34 |             111,202 |
+|       95 | pyspark   |           18 |             111,184 |
+|       93 | pandas    |           18 |             108,413 |
+|      210 | git       |           35 |             108,088 |
+|       14 | c#        |           11 |             107,769 |
+|      182 | tableau   |           41 |             102,837 |
+
+
+Key Insights:
+
+- The most “optimal” skills skew heavily toward modern data engineering & cloud:
+- NoSQL, Kafka, Terraform, GCP, Hadoop, Redshift, BigQuery, Snowflake, Spark all combine high salaries with non-trivial demand.
+- Spark, Azure, and AWS stand out as skills with both high demand and strong pay, making them excellent long-term bets.
+- Tools like Git/GitHub, Airflow, Pandas and languages like Scala, C# also score well, confirming that data analysts benefit from strong software engineering fundamentals.
+- Tableau appears as a visualization tool with both solid demand and a six-figure average salary, reinforcing the value of strong communication and dashboarding skills.
+
+pie title Top "Optimal" Skills by Avg Salary (Sample)
+  "NoSQL" : 167081
+  "Kafka" : 166420
+  "Terraform" : 166420
+  "Flow" : 151239
+  "GitHub" : 150896
+  "GCP" : 146239
+  "Hadoop" : 144243
+  "Redshift" : 142910
 
 # What I learned?
 
